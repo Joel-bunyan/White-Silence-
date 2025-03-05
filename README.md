@@ -1,4 +1,15 @@
 # White-Silence-
 
 ## 🤫🚫🗣️👉🎮 ##
-                                          - Joel Bunyan and Antony Wilson....
+
+
+
+
+
+
+
+
+
+
+
+### -  Joel Bunyan and Antony Wilson ###
