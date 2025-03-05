@@ -3,6 +3,7 @@ class_name  Player extends CharacterBody2D
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 var wood_count = 0
+var near_fire: bool = false  
 
 @onready var animation_player : AnimationPlayer= $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
@@ -10,6 +11,7 @@ var wood_count = 0
 @onready var health_bar = $HealthBar
 @onready var wood_label = $"../CanvasLayer/WoodLabel"
 @onready var sword_hitbox : Area2D = $SwordHitBox 
+@onready var fire_scene = preload("res://Fire.tscn")
 
 func update_wood_count():
 	if wood_label:
@@ -50,6 +52,9 @@ func _process(delta ):
 		 Input.get_axis("up", "down")
 	).normalized()
 	update_sword_position()
+	if Input.is_action_just_pressed("Fire"): 
+		print("🔥 Fire button pressed!")
+		place_fire()
 
 
 func _physics_process( delta ):
@@ -86,7 +91,12 @@ func AnimDirection()-> String:
 
 
 func _on_cold_timer_timeout():
-	take_damage(0.4)
+	if not near_fire: 
+		take_damage(0.4)
+	else: 
+		health = min(health + 3, max_health)
+		health_bar.value = health
+		
 func update_sword_position():
 	if sword_hitbox:
 		if cardinal_direction == Vector2.RIGHT:
@@ -97,3 +107,16 @@ func update_sword_position():
 			sword_hitbox.position = Vector2(0, -20)  # Move up
 		elif cardinal_direction == Vector2.DOWN:
 			sword_hitbox.position = Vector2(0, 20)  # Move down
+			
+func place_fire():
+	if wood_count >= 3:
+		wood_count -= 3
+		update_wood_count()
+
+		var fire = fire_scene.instantiate()
+		fire.position = position  # Place fire at player's position
+		get_tree().current_scene.add_child(fire)
+		
+		print("🔥 Fire placed at:", fire.position)  # Debugging
+	else:
+		print("❌ Not enough wood!")

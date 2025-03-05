@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qguh8v7661j0"
-path="res://.godot/imported/memetired.jpg-b924f20428d5930449b1aec63ddd412a.ctex"
+uid="uid://btw6wcupuaxu3"
+path="res://.godot/imported/image.webp-6deaa3bbd56011d35cc79c7779640265.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://memetired.jpg"
-dest_files=["res://.godot/imported/memetired.jpg-b924f20428d5930449b1aec63ddd412a.ctex"]
+source_file="res://image.webp"
+dest_files=["res://.godot/imported/image.webp-6deaa3bbd56011d35cc79c7779640265.ctex"]
 
 [params]
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dva6pahvrg3p0"]
+
+[ext_resource type="Script" path="res://Fire.gd" id="1_m31fa"]
+[ext_resource type="Texture2D" uid="uid://w36hwr75ple" path="res://DALL_E_2025-03-05_20.49.00_-_A_pixel_art_glowing_flame_with_a_transparent_background._The_flame_should_have_warm_orange__red__and_yellow_hues__giving_it_a_cozy_and_magical_appeara-removebg-preview.png" id="2_t5bcm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pfmgh"]
+radius = 43.0116
+
+[node name="Fire" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_m31fa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.999969, -4.00002)
+scale = Vector2(-0.188738, 0.156585)
+texture = ExtResource("2_t5bcm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pfmgh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
